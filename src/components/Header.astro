@@ -1,0 +1,30 @@
+---
+---
+<header>
+	<nav>
+		<a href="/">Home</a>
+		<a href="/blog">Blog</a>
+		<a href="/about">About</a>
+	</nav>
+</header>
+
+<style>
+	header {
+		background-color: rgb(var(--accent));
+		padding: 1rem;
+	}
+	nav {
+		display: flex;
+		justify-content: center;
+		gap: 1rem;
+	}
+	a {
+		color: rgb(var(--background));
+		text-decoration: none;
+		font-weight: bold;
+		transition: color 0.3s ease;
+	}
+	a:hover {
+		color: rgb(var(--accent-light));
+	}
+</style>

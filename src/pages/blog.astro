@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BlogPost from '../components/BlogPost.astro';
+
+const posts = [
+	{
+		title: "The Golden Ratio in Nature",
+		date: "2023-05-15",
+		url: "/blog/golden-ratio"
+	},
+	{
+		title: "Understanding Euler's Identity",
+		date: "2023-05-10",
+		url: "/blog/eulers-identity"
+	},
+	{
+		title: "The Beauty of Fractals",
+		date: "2023-05-05",
+		url: "/blog/fractals"
+	}
+];
+---
+
+<Layout title="Math Blog - Articles">
+	<h1>Math Blog Articles</h1>
+	<div class="blog-posts">
+		{posts.map(post => <BlogPost {...post} />)}
+	</div>
+</Layout>
+
+<style>
+	h1 {
+		text-align: center;
+		margin-bottom: 2rem;
+	}
+	.blog-posts {
+		display: grid;
+		gap: 1rem;
+	}
+</style>
