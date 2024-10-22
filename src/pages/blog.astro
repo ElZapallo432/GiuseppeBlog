@@ -4,6 +4,12 @@ import BlogPost from '../components/BlogPost.astro';
 
 const posts = [
 	{
+		title: "Representación numérica",
+		date: "2023-05-20",
+		url: "/blog/iic1001/representacion-numerica",
+		category: "IIC-1001"
+	},
+	{
 		title: "The Golden Ratio in Nature",
 		date: "2023-05-15",
 		url: "/blog/golden-ratio"
@@ -23,18 +29,53 @@ const posts = [
 
 <Layout title="Math Blog - Articles">
 	<h1>Math Blog Articles</h1>
-	<div class="blog-posts">
-		{posts.map(post => <BlogPost {...post} />)}
+	<div class="blog-categories">
+		<h2>IIC-1001 Algoritmos y sistemas computacionales</h2>
+		<div class="blog-posts">
+			{posts.filter(post => post.category === "IIC-1001").map(post => <BlogPost {...post} />)}
+		</div>
+		<h2>Other Articles</h2>
+		<div class="blog-posts">
+			{posts.filter(post => post.category !== "IIC-1001").map(post => <BlogPost {...post} />)}
+		</div>
+	</div>
+	<div class="forum-section">
+		<h2>Foro de discusión y dudas</h2>
+		<p>¿Tienes preguntas sobre la materia o los ejercicios? ¡Participa en nuestro foro de discusión!</p>
+		<a href="/forum" class="forum-button">Ir al foro</a>
 	</div>
 </Layout>
 
 <style>
-	h1 {
-		text-align: center;
+	h1, h2 {
+		color: rgb(var(--accent));
+	}
+	.blog-categories {
 		margin-bottom: 2rem;
 	}
 	.blog-posts {
 		display: grid;
 		gap: 1rem;
+		margin-bottom: 2rem;
+	}
+	.forum-section {
+		background-color: rgba(var(--accent-light), 0.2);
+		padding: 1rem;
+		border-radius: 8px;
+		margin-top: 2rem;
+	}
+	.forum-button {
+		display: inline-block;
+		background-color: rgb(var(--accent));
+		color: rgb(var(--background));
+		padding: 0.5rem 1rem;
+		border-radius: 4px;
+		text-decoration: none;
+		font-weight: bold;
+		margin-top: 1rem;
+		transition: background-color 0.3s ease;
+	}
+	.forum-button:hover {
+		background-color: rgb(var(--accent-dark));
 	}
 </style>

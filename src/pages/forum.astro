@@ -1,0 +1,129 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Foro de discusión - IIC-1001">
+	<h1>Foro de discusión y dudas - IIC-1001</h1>
+	<p>Bienvenido al foro de discusión para el curso IIC-1001 Algoritmos y sistemas computacionales. Aquí puedes hacer preguntas, compartir ideas y discutir sobre la materia del curso.</p>
+	
+	<div class="forum-categories">
+		<h2>Categorías</h2>
+		<ul>
+			<li><a href="#representacion-numerica">Representación numérica</a></li>
+			<li><a href="#complemento-2">Complemento de 2</a></li>
+			<li><a href="#hexadecimal">Conversión a hexadecimal</a></li>
+		</ul>
+	</div>
+
+	<div class="chat-container">
+		<h2>Chat de Representación numérica</h2>
+		<div id="chat-messages" class="chat-messages">
+			<!-- Los mensajes se cargarán aquí dinámicamente -->
+		</div>
+		<div class="chat-input">
+			<input type="text" id="message-input" placeholder="Escribe tu mensaje...">
+			<button id="send-message">Enviar</button>
+		</div>
+	</div>
+</Layout>
+
+<script>
+	const chatMessages = document.getElementById('chat-messages');
+	const messageInput = document.getElementById('message-input');
+	const sendButton = document.getElementById('send-message');
+
+	// Simulación de mensajes (en una aplicación real, estos vendrían de una base de datos)
+	const messages = [
+		{ user: 'Alice', message: '¿Alguien puede explicarme cómo convertir de decimal a binario?' },
+		{ user: 'Bob', message: 'Claro, para convertir de decimal a binario, puedes dividir repetidamente por 2 y tomar los residuos.' },
+		{ user: 'Charlie', message: 'También puedes usar la función toString(2) en JavaScript para convertir rápidamente.' },
+	];
+
+	function displayMessages() {
+		chatMessages.innerHTML = messages.map(msg => `
+			<div class="message">
+				<strong>${msg.user}:</strong> ${msg.message}
+			</div>
+		`).join('');
+	}
+
+	function addMessage() {
+		const message = messageInput.value.trim();
+		if (message) {
+			messages.push({ user: 'Tú', message: message });
+			displayMessages();
+			messageInput.value = '';
+			chatMessages.scrollTop = chatMessages.scrollHeight;
+		}
+	}
+
+	sendButton.addEventListener('click', addMessage);
+	messageInput.addEventListener('keypress', function(e) {
+		if (e.key === 'Enter') {
+			addMessage();
+		}
+	});
+
+	displayMessages();
+</script>
+
+<style>
+	h1, h2 {
+		color: rgb(var(--accent));
+	}
+	.forum-categories {
+		margin-top: 2rem;
+	}
+	.forum-categories ul {
+		list-style-type: none;
+		padding: 0;
+	}
+	.forum-categories li {
+		margin-bottom: 0.5rem;
+	}
+	.forum-categories a {
+		color: rgb(var(--accent));
+		text-decoration: none;
+	}
+	.forum-categories a:hover {
+		text-decoration: underline;
+	}
+	.chat-container {
+		margin-top: 2rem;
+		border: 1px solid rgba(var(--accent), 0.3);
+		border-radius: 8px;
+		overflow: hidden;
+	}
+	.chat-messages {
+		height: 300px;
+		overflow-y: auto;
+		padding: 1rem;
+		background-color: rgba(var(--accent-light), 0.1);
+	}
+	.chat-input {
+		display: flex;
+		padding: 1rem;
+		background-color: rgba(var(--accent-light), 0.2);
+	}
+	.chat-input input {
+		flex-grow: 1;
+		padding: 0.5rem;
+		border: 1px solid rgba(var(--text), 0.3);
+		border-radius: 4px 0 0 4px;
+	}
+	.chat-input button {
+		background-color: rgb(var(--accent));
+		color: rgb(var(--background));
+		border: none;
+		padding: 0.5rem 1rem;
+		border-radius: 0 4px 4px 0;
+		cursor: pointer;
+		transition: background-color 0.3s ease;
+	}
+	.chat-input button:hover {
+		background-color: rgb(var(--accent-dark));
+	}
+	.message {
+		margin-bottom: 0.5rem;
+	}
+</style>
