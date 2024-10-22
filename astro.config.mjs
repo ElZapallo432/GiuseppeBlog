@@ -1,7 +1,10 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  // Add any necessary Astro configurations here
+  server: {
+    host: '0.0.0.0',
+    port: process.env.PORT ? parseInt(process.env.PORT) : 3000,
+  },
   vite: {
     ssr: {
       noExternal: ['@astrojs/dev-toolbar'],
